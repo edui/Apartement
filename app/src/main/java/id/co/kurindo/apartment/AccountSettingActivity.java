@@ -10,7 +10,6 @@ import id.co.kurindo.apartment.base.KurindoActivity;
  */
 
 public class AccountSettingActivity extends KurindoActivity {
-
     protected ActionBar setupToolbar() {
         ActionBar ab = super.setupToolbar();
         if(ab != null) ab.setTitle("Account Setting");
