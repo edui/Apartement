@@ -1,1 +1,1 @@
-include ':app', ':intlphoneinput'
+include ':app', ':intlphoneinput', ':library', ':glide-slider-0.1.1'
