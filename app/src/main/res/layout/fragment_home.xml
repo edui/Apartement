@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent" android:background="#FFF"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/topupLayout"
+        android:layout_width="match_parent" android:gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:weightSum="1">
+        <ImageView
+            android:id="@+id/ivAccount"
+            android:layout_width="70dp" android:layout_weight=".1" android:layout_gravity="center"
+            android:layout_height="70dp" android:src="@drawable/user_512" android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/tvAccount" android:layout_weight=".55"
+            android:layout_width="match_parent" android:gravity="center" android:textAlignment="center"
+            android:layout_height="wrap_content" android:text="Account" android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvHistory" android:layout_weight=".35"
+            android:layout_width="match_parent" android:gravity="center" android:textAlignment="center"
+            android:layout_height="wrap_content" android:text="History" android:textStyle="bold"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_below="@id/topupLayout" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="2dp"/>
+</LinearLayout>

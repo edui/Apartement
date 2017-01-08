@@ -1,0 +1,32 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.co.kurindo.apartment">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashScreenActivity" android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".SimpleFormActivity" android:screenOrientation="portrait"/>
+
+        <activity android:name=".HistoryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".FamilyActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AccountSettingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ActivationActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
+
+    </application>
+
+</manifest>

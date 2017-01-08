@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+        <TextView
+            android:layout_width="match_parent" android:gravity="center"
+            android:layout_height="wrap_content" android:text="Registrasi / Login user" android:textStyle="bold" android:textSize="16dp"/>
+        <TextView
+            android:layout_width="match_parent" android:layout_margin="10dp" android:gravity="center"
+            android:layout_height="wrap_content" android:text="Daftarkan nomor handphone anda." />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <net.rimoto.intlphoneinput.IntlPhoneInput
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:gravity="center"
+                android:id="@+id/input_phone"  />
+<!--
+            <id.co.kurindo.apartment.util.MaskedEditText
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/maskedEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="5"
+                android:hint="Nomor Telepon"
+                app:mask="+62-999-999-9999"
+                app:placeholder="_" />
+-->
+
+        </android.support.design.widget.TextInputLayout>
+        <LinearLayout android:orientation="vertical"
+            android:id="@+id/layoutVerifikasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent" android:layout_margin="10dp" android:gravity="center"
+                android:layout_height="wrap_content" android:text="Kode verifikasi sudah dikirimkan.\nSilahkan inputkan kode tersebut." />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/maskedEditTextLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:gravity="center"
+                android:layout_marginTop="8dp" android:textAlignment="center"
+                android:layout_marginBottom="8dp" >
+                <id.co.kurindo.apartment.util.MaskedEditText
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/maskedEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10" android:textAlignment="center" android:gravity="center"
+                    android:text=""
+                    android:hint="Activation Code"
+                    app:mask="9999"
+                    app:placeholder="_" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@color/colorPrimaryDark" android:textColor="@color/white"
+            android:text="Buat Account"/>
+
+    </LinearLayout>
+</ScrollView>

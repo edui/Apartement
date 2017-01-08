@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent" android:background="@color/grey"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/personIcon"
+        android:layout_width="match_parent" android:layout_gravity="center_vertical|left"
+        android:layout_height="100dp" android:src="@drawable/ic_account_circle_black_18dp" android:padding="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"  android:background="@color/white"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_marginRight="20dp" android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:gravity="center" android:background="@color/white"
+                android:layout_height="match_parent" android:weightSum="1">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_weight=".5"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+                    <EditText android:id="@+id/input_firstname"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="text" android:textSize="14dp"
+                        android:hint="Firstname" />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_weight=".5"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+                    <EditText android:id="@+id/input_lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" android:textSize="14dp"
+                        android:inputType="text"
+                        android:hint="Lastname " />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" android:textSize="14dp"
+                    android:inputType="text"
+                    android:hint="Email " />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <net.rimoto.intlphoneinput.IntlPhoneInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:textSize="14dp"
+                    android:id="@+id/input_phone"  />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:background="@color/colorPrimary" android:layout_margin="20dp"
+            android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent" android:background="@color/white"
+                android:layout_height="wrap_content" android:text="Preferences" android:textStyle="bold" android:layout_marginBottom="3dp"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:gravity="center" android:layout_marginRight="20dp" android:layout_marginLeft="20dp"
+            android:layout_height="match_parent" >
+            <TextView
+                android:layout_width="match_parent" android:gravity="center_vertical"
+                android:layout_height="wrap_content" android:text="Default Payment" />
+            <TextView
+                android:id="@+id/tvPayment"
+                android:layout_width="match_parent" android:gravity="center_vertical"
+                android:layout_height="wrap_content" android:text="Visa" android:textSize="12dp"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:gravity="center" android:layout_marginRight="20dp" android:layout_marginLeft="20dp" android:layout_marginTop="10dp"
+            android:layout_height="match_parent" >
+            <TextView
+                android:layout_width="match_parent" android:gravity="center_vertical"
+                android:layout_height="wrap_content" android:text="Email" />
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="match_parent" android:gravity="center_vertical"
+                android:layout_height="wrap_content" android:text="fadhillah.kheir@gmail.com" android:textSize="12dp"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:gravity="center" android:layout_marginRight="20dp" android:layout_marginLeft="20dp" android:layout_marginTop="10dp"
+            android:layout_height="match_parent" >
+            <TextView
+                android:layout_width="match_parent" android:gravity="center_vertical"
+                android:layout_height="wrap_content" android:text="These Preferences will apply to all trips using this profile." android:textSize="12dp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent" android:background="@color/colorPrimary" android:layout_margin="20dp"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent" android:background="@color/white"
+            android:layout_height="wrap_content" android:text="Family Members" android:textStyle="bold" android:layout_marginBottom="3dp"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:gravity="center" android:layout_marginRight="20dp" android:layout_marginLeft="20dp" android:layout_marginBottom="10dp"
+        android:layout_height="match_parent" >
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:gravity="center" android:layout_marginRight="20dp" android:layout_marginLeft="20dp"
+            android:layout_height="match_parent" android:weightSum="1">
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_weight=".5" android:gravity="center_vertical"
+                android:layout_height="wrap_content" android:weightSum="1">
+                <ImageView
+                    android:id="@+id/ivAddFamilyProfile"
+                    android:layout_width="match_parent" android:layout_weight=".7" android:layout_gravity="center_vertical|left"
+                    android:layout_height="wrap_content" android:src="@drawable/ic_add_circle_outline_black_18dp" android:padding="10dp"/>
+                <TextView
+                    android:id="@+id/tvAddFamilyProfile"
+                    android:layout_width="match_parent" android:layout_weight=".3" android:gravity="center_vertical|left"
+                    android:layout_height="wrap_content" android:text="Add Family Profile" android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_weight=".5" android:gravity="center"
+                android:layout_height="wrap_content" android:weightSum="1">
+                <ImageView
+                    android:id="@+id/ivAddBusinessProfile"
+                    android:layout_width="match_parent" android:layout_weight=".8" android:layout_gravity="center_vertical|left"
+                    android:layout_height="wrap_content" android:src="@drawable/ic_add_circle_outline_black_18dp" />
+                <TextView
+                    android:id="@+id/tvAddBusinessProfile"
+                    android:layout_width="match_parent" android:layout_weight=".2" android:gravity="center_vertical"
+                    android:layout_height="wrap_content" android:text="Add Business Profile" android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvFamilyMembers"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+    </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>
