@@ -27,6 +27,9 @@
         <activity android:name=".ActivationActivity" android:screenOrientation="portrait"/>
         <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
 
+
+        <meta-data android:name="id.co.kurindo.apartment.util.GlideConfiguration" android:value="GlideModule"/>
+
     </application>
 
 </manifest>

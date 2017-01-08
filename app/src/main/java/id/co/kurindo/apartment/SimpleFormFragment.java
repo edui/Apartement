@@ -73,12 +73,13 @@ public class SimpleFormFragment extends BaseFragment {
                 rgPilihan.addView(rb);
             }
 
+            /*
             rgPilihan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    Toast.makeText(getContext(), "checkedID: "+checkedId, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "checkedID: "+checkedId, Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
 /*
             submitBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -9,6 +9,7 @@ import java.util.Map;
 import id.co.kurindo.apartment.R;
 import id.co.kurindo.apartment.model.Billing;
 import id.co.kurindo.apartment.model.History;
+import id.co.kurindo.apartment.model.ImageModel;
 import id.co.kurindo.apartment.model.Person;
 import id.co.kurindo.apartment.model.Pilihan;
 import id.co.kurindo.apartment.model.Product;
@@ -29,6 +30,8 @@ public class DummyData {
     public static List<History> news= new ArrayList<>();
     public static Map<String, Billing> MAP_BILLINGS = new HashMap<>();
     public static List<Billing> billings= new ArrayList<>();
+    public static Map<String, ImageModel> MAP_ADS= new HashMap<>();
+    public static List<ImageModel> ads= new ArrayList<>();
     public static User user;
 
     static {
@@ -108,6 +111,16 @@ public class DummyData {
         addBilling(b);
         b =new Billing("2016", "Januari");
         addBilling(b);
+
+        addItem(new ImageModel(R.drawable.banner_dosend, "DO_SEND"));
+        addItem(new ImageModel(R.drawable.banner_dojek, "DO_JEK"));
+        addItem(new ImageModel(R.drawable.banner_dowash, "DO_WASH"));
+        addItem(new ImageModel(R.drawable.a, "DO_SERVICE"));
+        addItem(new ImageModel(R.drawable.b, "DO-HIJAMAH"));
+        addItem(new ImageModel(R.drawable.banner_docar, "D_CAR"));
+        addItem(new ImageModel(R.drawable.c, "Do-MOVE"));
+        addItem(new ImageModel(R.drawable.d, "DO-CLIENT"));
+        addItem(new ImageModel(R.drawable.e, "DO-CLIENT"));
     }
 
     public static void addHistory(History h) {
@@ -131,6 +144,10 @@ public class DummyData {
     private static void addMenu(Product menu) {
         menus.add(menu);
         MAP_MENUS.put(""+menu.getDrawable(), menu);
+    }
+    private static void addItem(ImageModel menu) {
+        ads.add(menu);
+        MAP_ADS.put(""+menu.getDrawable(), menu);
     }
 
     public static String formatCurrency(double amount)
