@@ -17,6 +17,10 @@
             android:id="@+id/ivPageIcon"
             android:layout_width="100dp" android:layout_weight=".4" android:layout_gravity="center"
             android:layout_height="100dp" android:src="@drawable/person_icon" android:layout_marginLeft="0dp"/>
+    <Spinner
+        android:id="@+id/spinnerRoom"
+        android:layout_width="fill_parent" android:layout_margin="10dp"
+        android:layout_height="wrap_content" />
     <RadioGroup
         android:id="@+id/rgPilihan"
         android:layout_width="match_parent"

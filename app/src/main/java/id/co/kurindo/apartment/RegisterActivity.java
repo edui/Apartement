@@ -15,6 +15,8 @@ import net.rimoto.intlphoneinput.IntlPhoneInput;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import id.co.kurindo.apartment.helper.SQLiteHandler;
+import id.co.kurindo.apartment.helper.SessionManager;
 import id.co.kurindo.apartment.util.DummyData;
 import id.co.kurindo.apartment.util.MaskedEditText;
 
@@ -39,14 +41,24 @@ public class RegisterActivity extends AppCompatActivity {
     LinearLayout layoutVerifikasi;
 
     boolean activation = false;
+    SessionManager session;
+    SQLiteHandler db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-
         layoutVerifikasi.setVisibility(View.GONE);
+
+        session = new SessionManager(this);
+        db = new SQLiteHandler(this);
+
+        if(session.isLoggedIn()) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @OnClick(R.id.btn_signup)
@@ -82,6 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Invalid Code",Toast.LENGTH_SHORT);
             return;
         }
+        session.setLogin(true);
+        db.addUser("Fadhillah","Kheir", "fahil.kheir@gmail.com",myInternationalNumber,"1", "owner","JKT","api",true, true, "1-jan-2017");
         DummyData.user.setPhone("+"+myInternationalNumber);
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);

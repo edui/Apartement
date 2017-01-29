@@ -100,10 +100,10 @@ public class AccountSettingFragment extends BaseFragment{
     }
     @OnClick(R.id.tvAddBusinessProfile)
     public void onClick_tvAddBusinessProfile(){
-        ((BaseActivity)getActivity()).showActivity(FamilyActivity.class);
+        ((BaseActivity)getActivity()).showActivity(BusinessProfileActivity.class);
     }
     @OnClick(R.id.ivAddBusinessProfile)
     public void onClick_ivAddBusinessProfile(){
-        ((BaseActivity)getActivity()).showActivity(FamilyActivity.class);
+        ((BaseActivity)getActivity()).showActivity(BusinessProfileActivity.class);
     }
 }

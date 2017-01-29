@@ -7,5 +7,12 @@
     <color name="grey">#FFE4E0E0</color>
     <color name="orange">#FA0</color>
     <color name="white">#FFF</color>
-
+    <string-array name="list_bg">
+        <item>#2196F3</item>
+        <item>#1976D2</item>
+        <item>#8BC34A</item>
+        <item>#ff484d</item>
+        <item>#fcba59</item>
+        <item>#24c6d5</item>
+    </string-array>
 </resources>

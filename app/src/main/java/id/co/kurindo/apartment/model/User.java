@@ -54,4 +54,8 @@ public class User extends Person {
     protected User(Parcel in) {
         super(in);
     }
+
+    public String getFullname(){
+        return getFirstname() + " "+getLastname();
+    }
 }

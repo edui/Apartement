@@ -1,30 +1,22 @@
 package id.co.kurindo.apartment;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
 import id.co.kurindo.apartment.base.KurindoActivity;
+import id.co.kurindo.apartment.base.KurindoBaseDrawerActivity;
 
 /**
  * Created by aspire on 12/23/2016.
  */
 
-public class MainActivity extends KurindoActivity {
-
+public class MainActivity extends KurindoBaseDrawerActivity {
     @Override
-    public Class getFragmentClass() {
-        return MainTabFragment.class;
-    }
-
-    @Override
-    public Bundle getBundleParams() {
-        return null;
-    }
-
-    protected ActionBar setupToolbar() {
-        ActionBar ab = getActionBarToolbar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_domain_white_18dp);
-        ab.setDisplayHomeAsUpEnabled(true);
-        return ab;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        showFragment(MainTabFragment.class);
     }
 }

@@ -13,6 +13,7 @@ import id.co.kurindo.apartment.model.ImageModel;
 import id.co.kurindo.apartment.model.Person;
 import id.co.kurindo.apartment.model.Pilihan;
 import id.co.kurindo.apartment.model.Product;
+import id.co.kurindo.apartment.model.Room;
 import id.co.kurindo.apartment.model.User;
 
 /**
@@ -33,10 +34,19 @@ public class DummyData {
     public static Map<String, ImageModel> MAP_ADS= new HashMap<>();
     public static List<ImageModel> ads= new ArrayList<>();
     public static User user;
+    public static List<Room> rooms = new ArrayList<>();
 
     static {
         user = new User(1, "Fadhil","Kheir", "fadhillah.kheir@gmail.com", "6282110056018");
-        addUser(new User(2, "Dwi","Miyanto", "edui.bin@gmail.com", "6282110056018"));
+        User user2 = new User(2, "Dwi","Miyanto", "edui.bin@gmail.com", "6282110056018");
+        addUser(user2);
+
+        Room r = new Room("R212", user);
+        rooms.add(r);
+         r = new Room("R213", user);
+        rooms.add(r);
+        r = new Room("R214", user);
+        rooms.add(r);
 
         Product p = new Product(R.drawable.water_xxl, "Water");
         p.getItems().add( new Pilihan("A", "Air tidak ada"));

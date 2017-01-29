@@ -29,11 +29,6 @@ public class HomeFragment extends BaseFragment {
     ButtonAdapter mAdapter;
     ArrayList<Product> data = new ArrayList<>();
 
-    @Bind(R.id.tvAccount)
-    TextView tvAccount;
-    @Bind(R.id.tvHistory)
-    TextView tvHistory;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,19 +53,6 @@ public class HomeFragment extends BaseFragment {
             )
         );
 
-        tvAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).showActivity(AccountSettingActivity.class);
-            }
-        });
-
-        tvHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).showActivity(HistoryActivity.class);
-            }
-        });
         return v;
     }
 }

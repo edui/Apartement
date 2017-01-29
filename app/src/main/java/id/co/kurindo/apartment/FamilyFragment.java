@@ -6,17 +6,23 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import net.rimoto.intlphoneinput.IntlPhoneInput;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import id.co.kurindo.apartment.adapter.RoomAdapter;
 import id.co.kurindo.apartment.base.BaseFragment;
 import id.co.kurindo.apartment.model.Person;
+import id.co.kurindo.apartment.model.Room;
 import id.co.kurindo.apartment.model.User;
 import id.co.kurindo.apartment.util.DummyData;
 
@@ -33,15 +39,20 @@ public class FamilyFragment extends BaseFragment {
     EditText inputEmail;
     @Bind(R.id.input_phone)
     IntlPhoneInput phoneNumber;
+    @Bind(R.id.spinnerRoom)
+    Spinner selectRoom;
     @Bind(R.id.btn_submit)
     AppCompatButton btnSubmit;
     Person user;
+    List<Room> rooms = new ArrayList<>();
+    Room selectedRoom;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getArguments();
-        user = b.getParcelable("user");
+        if(b != null)
+            user = b.getParcelable("user");
 
     }
 
@@ -56,6 +67,20 @@ public class FamilyFragment extends BaseFragment {
             if(user.getPhone().startsWith("+"))
                 phoneNumber.setNumber((user.getPhone().startsWith("+")? "":"+")+user.getPhone());
         }
+        rooms.addAll(DummyData.rooms);
+        RoomAdapter roomAdapter = new RoomAdapter(getContext(), rooms);
+        selectRoom.setAdapter(roomAdapter);
+        selectRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedRoom = (Room) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         return v;
     }
 

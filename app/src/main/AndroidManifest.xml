@@ -23,6 +23,7 @@
 
         <activity android:name=".HistoryActivity" android:screenOrientation="portrait"/>
         <activity android:name=".FamilyActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".BusinessProfileActivity" android:screenOrientation="portrait"/>
         <activity android:name=".AccountSettingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ActivationActivity" android:screenOrientation="portrait"/>
         <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
