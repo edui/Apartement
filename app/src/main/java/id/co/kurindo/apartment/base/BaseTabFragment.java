@@ -25,7 +25,7 @@ public abstract class BaseTabFragment extends BaseFragment {
         /**
          *Inflate tab_layout and setup Views.
          */
-        View x =  inflateAndBind(inflater, container, R.layout.tab_layout);
+        View x =  inflateAndBind(inflater, container, getLayout());
         //View x =  inflater.inflate(R.layout.tab_layout,null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
@@ -84,4 +84,8 @@ public abstract class BaseTabFragment extends BaseFragment {
     public abstract int [] getIcons();
     public abstract boolean isShowIcon() ;
     public abstract FragmentPagerAdapter getFragmentPagerAdapter() ;
+
+    public int getLayout() {
+        return R.layout.tab_layout;
+    }
 }

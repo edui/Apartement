@@ -11,7 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import net.rimoto.intlphoneinput.IntlPhoneInput;
+import com.lamudi.phonefield.PhoneInputLayout;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class FamilyFragment extends BaseFragment {
     @Bind(R.id.input_email)
     EditText inputEmail;
     @Bind(R.id.input_phone)
-    IntlPhoneInput phoneNumber;
+    PhoneInputLayout phoneNumber;
     @Bind(R.id.spinnerRoom)
     Spinner selectRoom;
     @Bind(R.id.btn_submit)
@@ -46,13 +47,16 @@ public class FamilyFragment extends BaseFragment {
     Person user;
     List<Room> rooms = new ArrayList<>();
     Room selectedRoom;
+    boolean editMode = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getArguments();
-        if(b != null)
+        if(b != null){
             user = b.getParcelable("user");
+            editMode = true;
+        }
 
     }
 
@@ -64,9 +68,10 @@ public class FamilyFragment extends BaseFragment {
             inputLastname.setText(user.getLastname());
             inputFirstname.setText(user.getFirstname());
             inputEmail.setText(user.getEmail());
-            if(user.getPhone().startsWith("+"))
-                phoneNumber.setNumber((user.getPhone().startsWith("+")? "":"+")+user.getPhone());
+            //if(user.getPhone().startsWith("+")) phoneNumber.setNumber((user.getPhone().startsWith("+")? "":"+")+user.getPhone());
+            phoneNumber.setPhoneNumber(user.getPhone());
         }
+        phoneNumber.setDefaultCountry("ID");
         rooms.addAll(DummyData.rooms);
         RoomAdapter roomAdapter = new RoomAdapter(getContext(), rooms);
         selectRoom.setAdapter(roomAdapter);
@@ -90,16 +95,21 @@ public class FamilyFragment extends BaseFragment {
             return;
         }
         Random r = new Random();
-        User p = new User();
-        p.setId(r.nextInt());
+        User p = null;
+        if(editMode) p = DummyData.MAP_USERS.get(user.getPhone());
+        if(p == null) {
+            p = new User();
+            p.setId(r.nextInt());
+        }
         p.setFirstname(inputFirstname.getText().toString());
         p.setLastname(inputLastname.getText().toString());
         p.setEmail(inputEmail.getText().toString());
-        p.setPhone("+"+phoneNumber.getPhoneNumber().getCountryCode()+""+phoneNumber.getNumber());
+        p.setPhone(phoneNumber.getPhoneNumber());
+        //p.setPhone("+"+phoneNumber.getPhoneNumber().getCountryCode()+""+phoneNumber.getNumber());
 
-        DummyData.addUser(p);
+        if(!editMode)DummyData.addUser(p);
 
-        Toast.makeText(getContext(), "user baru berhasil ditambahkan.", Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(), "user baru berhasil ditambahkan."+phoneNumber.getPhoneNumber(), Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 
@@ -127,8 +137,11 @@ public class FamilyFragment extends BaseFragment {
             inputLastname.setError(null);
         }
         if(!phoneNumber.isValid()){
+            phoneNumber.setError("Masukkan Nomor handphone yang valid.");
             valid = false;
             Toast.makeText(getContext(), "Masukkan Nomor handphone yang valid.", Toast.LENGTH_SHORT).show();
+        }else{
+            phoneNumber.setError(null);
         }
         return valid;
     }

@@ -11,7 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.rimoto.intlphoneinput.IntlPhoneInput;
+import com.lamudi.phonefield.PhoneInputLayout;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ import butterknife.OnClick;
 import id.co.kurindo.apartment.adapter.PersonAdapter;
 import id.co.kurindo.apartment.base.BaseActivity;
 import id.co.kurindo.apartment.base.BaseFragment;
-import id.co.kurindo.apartment.model.Person;
 import id.co.kurindo.apartment.model.User;
 import id.co.kurindo.apartment.util.DummyData;
 import id.co.kurindo.apartment.util.RecyclerItemClickListener;
@@ -38,7 +38,7 @@ public class AccountSettingFragment extends BaseFragment{
     @Bind(R.id.input_email)
     EditText inputEmail;
     @Bind(R.id.input_phone)
-    IntlPhoneInput phoneNumber;
+    PhoneInputLayout phoneNumber;
     @Bind(R.id.tvAddFamilyProfile)
     TextView tvAddFamilyProfile;
     @Bind(R.id.tvAddBusinessProfile)
@@ -78,8 +78,9 @@ public class AccountSettingFragment extends BaseFragment{
         inputFirstname.setText(user.getFirstname());
         inputLastname.setText(user.getLastname());
         inputEmail.setText(user.getEmail());
-        if(user.getPhone().startsWith("+"))
-            phoneNumber.setNumber((user.getPhone().startsWith("+")? "":"+")+user.getPhone());
+        phoneNumber.setDefaultCountry("ID");
+        phoneNumber.setPhoneNumber(user.getPhone());
+        //if(user.getPhone().startsWith("+")) phoneNumber.setNumber((user.getPhone().startsWith("+")? "":"+")+user.getPhone());
         return v;
     }
 

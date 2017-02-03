@@ -2,7 +2,6 @@ package id.co.kurindo.apartment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -10,7 +9,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import net.rimoto.intlphoneinput.IntlPhoneInput;
+
+import com.lamudi.phonefield.PhoneInputLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Bind(R.id.btn_signup)
     AppCompatButton signUpBtn;
     @Bind(R.id.input_phone)
-    IntlPhoneInput phoneNumber;
+    PhoneInputLayout phoneNumber;
 
     @Bind(R.id.maskedEditText)
     MaskedEditText maskedEditText;
@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         session = new SessionManager(this);
         db = new SQLiteHandler(this);
-
+        phoneNumber.setDefaultCountry("ID");
         if(session.isLoggedIn()) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
@@ -69,8 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Invalid Phone",Toast.LENGTH_SHORT);
                 return;
             }
-            myInternationalNumber = phoneNumber.getPhoneNumber().getCountryCode()+ ""+phoneNumber.getPhoneNumber().getNationalNumber();
-            int countrycode = phoneNumber.getPhoneNumber().getCountryCode();
+            myInternationalNumber = phoneNumber.getPhoneNumber();
+            //int countrycode = phoneNumber.getPhoneNumber().getCountryCode();
             /*Bundle bundle = new Bundle();
             bundle.putString("phone", myInternationalNumber);
             bundle.putInt("country", countrycode);

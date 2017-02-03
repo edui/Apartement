@@ -55,18 +55,13 @@
                     android:layout_height="50dp" android:textSize="14dp"
                     android:inputType="text"
                     android:hint="Email " />
+
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.lamudi.phonefield.PhoneInputLayout
+                android:id="@+id/input_phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <net.rimoto.intlphoneinput.IntlPhoneInput
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:textSize="14dp"
-                    android:id="@+id/input_phone"  />
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="wrap_content" android:textSize="14dp" />
 
         </LinearLayout>
 
@@ -135,7 +130,7 @@
                 <TextView
                     android:id="@+id/tvAddBusinessProfile"
                     android:layout_width="match_parent" android:layout_weight=".2" android:gravity="center_vertical"
-                    android:layout_height="wrap_content" android:text="Add Business Profile" android:textStyle="bold"/>
+                    android:layout_height="wrap_content" android:text="Add Tenant" android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
 

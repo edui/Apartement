@@ -18,29 +18,33 @@
         <TextView
             android:layout_width="match_parent" android:layout_margin="10dp" android:gravity="center"
             android:layout_height="wrap_content" android:text="Daftarkan nomor handphone anda." />
-        <android.support.design.widget.TextInputLayout
+        <com.lamudi.phonefield.PhoneInputLayout
+            android:id="@+id/input_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <net.rimoto.intlphoneinput.IntlPhoneInput
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:gravity="center"
-                android:id="@+id/input_phone"  />
-<!--
-            <id.co.kurindo.apartment.util.MaskedEditText
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/maskedEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:text="5"
-                android:hint="Nomor Telepon"
-                app:mask="+62-999-999-9999"
-                app:placeholder="_" />
--->
+            android:layout_height="wrap_content" android:textSize="14dp" />
+        <!--       <android.support.design.widget.TextInputLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content" android:gravity="center"
+                   android:layout_marginTop="8dp"
+                   android:layout_marginBottom="8dp">
+                   <net.rimoto.intlphoneinput.IntlPhoneInput
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content" android:gravity="center"
+                       android:id="@+id/input_phone"  />
+      
+                   <id.co.kurindo.apartment.util.MaskedEditText
+                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                       android:id="@+id/maskedEditText"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:text="5"
+                       android:hint="Nomor Telepon"
+                       app:mask="+62-999-999-9999"
+                       app:placeholder="_" />
 
         </android.support.design.widget.TextInputLayout>
+    -->
         <LinearLayout android:orientation="vertical"
             android:id="@+id/layoutVerifikasi"
             android:layout_width="match_parent"

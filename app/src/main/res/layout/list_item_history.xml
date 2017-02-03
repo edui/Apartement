@@ -20,4 +20,21 @@
         android:textSize="12sp" >
     </TextView>
 
+    <LinearLayout
+        android:id="@+id/buttonLayout" android:visibility="gone"
+        android:layout_width="match_parent" android:background="@color/orange"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="1">
+        <ImageView
+            android:id="@+id/assign"
+            android:layout_width="match_parent" android:layout_weight=".3"
+            android:layout_height="wrap_content" android:src="@drawable/ic_input_white_18dp"/>
+        <ImageView
+            android:id="@+id/ip"
+            android:layout_width="match_parent" android:layout_weight=".4"
+            android:layout_height="wrap_content" android:src="@drawable/ic_hourglass_empty_black_18dp"/>
+        <ImageView
+            android:id="@+id/completed"
+            android:layout_width="match_parent" android:layout_weight=".3"
+            android:layout_height="wrap_content" android:src="@drawable/ic_assignment_turned_in_white_18dp"/>
+    </LinearLayout>
 </LinearLayout>

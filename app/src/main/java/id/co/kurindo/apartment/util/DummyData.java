@@ -27,6 +27,9 @@ public class DummyData {
     public static List<Product> menus = new ArrayList<>();
     public static Map<String, History> MAP_HISTORIES = new HashMap<>();
     public static List<History> histories= new ArrayList<>();
+    public static List<History> newhistories= new ArrayList<>();
+    public static List<History> iphistories= new ArrayList<>();
+    public static List<History> completedhistories= new ArrayList<>();
     public static Map<String, History> MAP_NEWS = new HashMap<>();
     public static List<History> news= new ArrayList<>();
     public static Map<String, Billing> MAP_BILLINGS = new HashMap<>();
@@ -35,6 +38,9 @@ public class DummyData {
     public static List<ImageModel> ads= new ArrayList<>();
     public static User user;
     public static List<Room> rooms = new ArrayList<>();
+    public static String STATUS_COMPLETED = "COMPLETED";
+    public static String STATUS_IP= "IP";
+    public static String STATUS_NEW= "NEW";
 
     static {
         user = new User(1, "Fadhil","Kheir", "fadhillah.kheir@gmail.com", "6282110056018");
@@ -85,17 +91,21 @@ public class DummyData {
                 "Waktu Laporan : 10 Desember 2016, 15.00 WIB\n" +
                 "Status : sudah normal\n" +
                 "Waktu : 10 Desember 2016 ,15.30 WIB\n" +
-                "PIC : Beyok\n");//*/
+                "PIC : Beyok\n", STATUS_COMPLETED);//*/
         addHistory(h);
+        completedhistories.add(h);
 
-        h = new History("1 Desember 2016", "Internet Report");
+        h = new History("1 Desember 2016", "Internet Report", STATUS_NEW);
         addHistory(h);
+        newhistories.add(h);
 
-        h = new History("2 Desember 2016", "Security Report");
+        h = new History("2 Desember 2016", "Security Report", STATUS_IP);
         addHistory(h);
+        iphistories.add(h);
 
-        History n = new History("Desember", "Maintenance generator sehingga berimpak pemadaman lampu pada hari kamis tanggal 10 Desember 2016 pada pukul 09.00 - 11.00 WIB");
+        History n = new History("Desember", "Maintenance generator sehingga berimpak pemadaman lampu pada hari kamis tanggal 10 Desember 2016 pada pukul 09.00 - 11.00 WIB", STATUS_IP);
         addNews(n);
+        iphistories.add(n);
 
         Billing b =new Billing("2016", "Desember", menus, "25 Desember 2016", "24 Desember 2016");
         addBilling(b);

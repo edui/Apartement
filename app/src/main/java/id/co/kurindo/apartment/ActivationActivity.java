@@ -2,15 +2,14 @@ package id.co.kurindo.apartment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import net.rimoto.intlphoneinput.IntlPhoneInput;
+import com.lamudi.phonefield.PhoneInputLayout;
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,7 +24,7 @@ public class ActivationActivity extends AppCompatActivity {
     @Bind(R.id.btn_signup)
     AppCompatButton signUpBtn;
     @Bind(R.id.input_phone)
-    IntlPhoneInput phoneNumber;
+    PhoneInputLayout phoneNumber;
 
     @Bind(R.id.maskedEditText)
     MaskedEditText maskedEditText;

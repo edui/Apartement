@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import id.co.kurindo.apartment.R;
 import id.co.kurindo.apartment.model.History;
 import id.co.kurindo.apartment.model.Product;
 import id.co.kurindo.apartment.model.Report;
+import id.co.kurindo.apartment.util.DummyData;
 
 
 /**
@@ -29,10 +31,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     Context context;
     List<History> data = new ArrayList<>();
+    boolean showButton;
 
     public HistoryAdapter(Context context, List<History> data) {
+        this(context,data, false);
+    }
+    public HistoryAdapter(Context context, List<History> data, boolean showButton) {
         this.context = context;
         this.data = data;
+        this.showButton=showButton;
     }
 
 
@@ -50,6 +57,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         History model = data.get(position);
+        ((MyItemHolder)holder).buttonLayout.setVisibility(showButton?View.VISIBLE:View.GONE);
         /*
         Glide.with(context).load(model.getUrl())
                 .thumbnail(0.5f)
@@ -60,6 +68,21 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         */
         ((MyItemHolder) holder).mTextView.setText(model.getReport());
         ((MyItemHolder) holder).mTextViewTitle.setText(model.getDate());
+        if(model.getStatus().equalsIgnoreCase(DummyData.STATUS_NEW)){
+            ((MyItemHolder) holder).assign.setImageResource(R.drawable.ic_input_black_18dp);
+            ((MyItemHolder) holder).ip.setImageResource(R.drawable.ic_hourglass_empty_black_18dp);
+            ((MyItemHolder) holder).completed.setImageResource(R.drawable.ic_assignment_turned_in_white_18dp);
+        }else
+        if(model.getStatus().equalsIgnoreCase(DummyData.STATUS_IP)){
+            ((MyItemHolder) holder).assign.setImageResource(R.drawable.ic_input_black_18dp);
+            ((MyItemHolder) holder).ip.setImageResource(R.drawable.ic_hourglass_full_black_18dp);
+            ((MyItemHolder) holder).completed.setImageResource(R.drawable.ic_assignment_turned_in_white_18dp);
+        }else
+        if(model.getStatus().equalsIgnoreCase(DummyData.STATUS_COMPLETED)){
+            ((MyItemHolder) holder).assign.setImageResource(R.drawable.ic_input_black_18dp);
+            ((MyItemHolder) holder).ip.setImageResource(R.drawable.ic_hourglass_full_black_18dp);
+            ((MyItemHolder) holder).completed.setImageResource(R.drawable.ic_assignment_turned_in_black_18dp);
+        }
     }
 
     @Override
@@ -70,6 +93,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static class MyItemHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
         TextView mTextViewTitle;
+        ImageView assign;
+        ImageView ip;
+        ImageView completed;
+        LinearLayout buttonLayout;
 
 
         public MyItemHolder(View itemView) {
@@ -77,6 +104,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             mTextViewTitle = (TextView) itemView.findViewById(R.id.item_title);
             mTextView = (TextView) itemView.findViewById(R.id.item_text);
+            assign = (ImageView) itemView.findViewById(R.id.assign);
+            ip = (ImageView) itemView.findViewById(R.id.ip);
+            completed= (ImageView) itemView.findViewById(R.id.completed);
+            buttonLayout= (LinearLayout) itemView.findViewById(R.id.buttonLayout);
+
         }
 
     }

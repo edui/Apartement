@@ -3,6 +3,8 @@ package id.co.kurindo.apartment.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import id.co.kurindo.apartment.util.DummyData;
+
 /**
  * Created by dwim on 1/8/2017.
  */
@@ -14,8 +16,12 @@ public class History implements Parcelable {
     private String status;
 
     public History(String date, String report){
+        this(date, report , DummyData.STATUS_NEW);
+    }
+    public History(String date, String report, String status){
         this.date = date;
         this.report = report;
+        this.status = status;
     }
     protected History(Parcel in) {
         date = in.readString();
@@ -71,5 +77,13 @@ public class History implements Parcelable {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

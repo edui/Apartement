@@ -13,6 +13,7 @@ import id.co.kurindo.apartment.AccountSettingActivity;
 import id.co.kurindo.apartment.HistoryActivity;
 import id.co.kurindo.apartment.R;
 import id.co.kurindo.apartment.RegisterActivity;
+import id.co.kurindo.apartment.RoomActivity;
 import id.co.kurindo.apartment.helper.SQLiteHandler;
 import id.co.kurindo.apartment.helper.SessionManager;
 
@@ -67,10 +68,18 @@ public class KurindoBaseDrawerActivity extends BaseDrawerActivity {
                 finish();
                 break;
             case R.id.nav_item_account:
-                startActivity(new Intent(this,AccountSettingActivity.class));
+                showActivity(AccountSettingActivity.class, bundle);
                 break;
             case R.id.nav_item_history:
-                startActivity(new Intent(this, HistoryActivity.class));
+                bundle.putString("role", "engineer");
+                showActivity(HistoryActivity.class, bundle);
+                break;
+            case R.id.nav_item_history2:
+                bundle.putString("role", "owner");
+                showActivity(HistoryActivity.class, bundle);
+                break;
+            case R.id.nav_item_room:
+                showActivity(RoomActivity.class);
                 break;
         }
     }

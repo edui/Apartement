@@ -9,23 +9,16 @@ import id.co.kurindo.apartment.base.KurindoActivity;
  * Created by dwim on 1/7/2017.
  */
 
-public class HistoryActivity extends KurindoActivity {
+public class RoomActivity extends KurindoActivity {
     protected ActionBar setupToolbar() {
         ActionBar ab = super.setupToolbar();
-        if(ab != null) ab.setTitle("History");
+        if(ab != null) ab.setTitle("My Rooms");
         return ab;
     }
 
     @Override
     public Class getFragmentClass() {
-        Bundle b = getIntent().getExtras();
-        if(b != null){
-            String role = b.getString("role");
-            if(role.equalsIgnoreCase("owner")){
-                return HistoryTabFragment.class;
-            }
-        }
-        return HistoryJobTabFragment.class;
+        return RoomFragment.class;
     }
 
     @Override

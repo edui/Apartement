@@ -9,9 +9,15 @@
     <item android:title="Account"
         android:id="@+id/nav_item_account"
         android:icon="@drawable/ic_account_circle_black_18dp"/>
-    <item android:title="History"
+    <item android:title="History (Engineer)"
         android:id="@+id/nav_item_history"
         android:icon="@drawable/ic_assignment_black"/>
+    <item android:title="History (Owner Tenant)"
+        android:id="@+id/nav_item_history2"
+        android:icon="@drawable/ic_assignment_black"/>
+    <item android:title="My Rooms"
+        android:id="@+id/nav_item_room"
+        android:icon="@drawable/ic_domain_black_18dp"/>
 
     <group android:id="@+id/group_settings_id">
         <item android:title="Settings"

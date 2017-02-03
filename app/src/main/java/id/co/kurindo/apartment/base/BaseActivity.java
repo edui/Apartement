@@ -10,6 +10,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.Map;
+
 import id.co.kurindo.apartment.MainTabFragment;
 import id.co.kurindo.apartment.R;
 
@@ -138,7 +144,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
+    public void addRequest(final String tag_string_req, int method, String url, Response.Listener responseListener, Response.ErrorListener errorListener, final Map<String, String> params, final Map<String, String> headers){
+        final StringRequest strReq = new StringRequest(method,url, responseListener, errorListener){
+            protected Map<String, String> getParams() throws AuthFailureError {
+                if(params == null) return super.getParams();
+                return params;
+            }
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                if(headers == null) return super.getHeaders();
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
 }
 
 
