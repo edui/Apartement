@@ -10,12 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import id.co.kurindo.apartment.R;
+import id.co.kurindo.apartment.helper.SessionManager;
 import id.co.kurindo.apartment.model.History;
 import id.co.kurindo.apartment.model.Room;
 
@@ -27,10 +29,13 @@ public class RoomViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     Context context;
     List<Room> data = new ArrayList<>();
-
-    public RoomViewAdapter(Context context, List<Room> data) {
+    SessionManager session;
+    private OnItemClickListener itemClickListener;
+    public RoomViewAdapter(Context context, List<Room> data, OnItemClickListener itemClickListener) {
         this.context = context;
         this.data = data;
+        this.session = new SessionManager(context);
+        this.itemClickListener = itemClickListener;
     }
 
 
@@ -39,14 +44,15 @@ public class RoomViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         RecyclerView.ViewHolder viewHolder;
         View v;
         v = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.list_item_room, parent, false);
+                R.layout.list_item_room_view, parent, false);
         viewHolder = new MyItemHolder(v);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder vholder, final int position) {
+        MyItemHolder holder= (MyItemHolder) vholder;
         Room model = data.get(position);
         /*
         Glide.with(context).load(model.getUrl())
@@ -56,8 +62,26 @@ public class RoomViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(((MyItemHolder) holder).mImg);
         */
-        ((MyItemHolder) holder).mTextView.setText(model.getOwner().getFullname());
-        ((MyItemHolder) holder).mTextViewTitle.setText(model.getRoomNumber());
+        holder.mTextView.setText(model.getOwner().getFullname());
+        holder.mTextViewTitle.setText(model.getRoomNumber());
+        String roomStr = session.getRoom();
+        String room = roomStr;
+        if(roomStr.contains("|")){
+            room = roomStr.substring(0, roomStr.indexOf("|"));
+        }
+        if(model.getRoomNumber().equalsIgnoreCase(room)){
+            holder.btnSetDefault.setBackgroundResource(R.color.colorAccent );
+            holder.btnSetDefault.setText("Default");
+        }else{
+            holder.btnSetDefault.setBackgroundResource(R.color.grey);
+            holder.btnSetDefault.setText("");
+            holder.btnSetDefault.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClickListener.onSetDefaultButtonClick(v, position);
+                }
+            });
+        }
     }
 
     @Override
@@ -68,6 +92,7 @@ public class RoomViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static class MyItemHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
         TextView mTextViewTitle;
+        Button btnSetDefault;
 
 
         public MyItemHolder(View itemView) {
@@ -75,9 +100,12 @@ public class RoomViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             mTextViewTitle = (TextView) itemView.findViewById(R.id.item_title);
             mTextView = (TextView) itemView.findViewById(R.id.item_text);
+            btnSetDefault = (Button) itemView.findViewById(R.id.btnSetDefault);
         }
 
     }
 
-
+    public interface OnItemClickListener {
+        void onSetDefaultButtonClick(View view, int position);
+    }
 }

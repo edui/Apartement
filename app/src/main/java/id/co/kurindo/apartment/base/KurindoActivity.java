@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 
 import id.co.kurindo.apartment.R;
+import id.co.kurindo.apartment.helper.SessionManager;
 
 
 /**
@@ -12,11 +13,13 @@ import id.co.kurindo.apartment.R;
 
 public abstract class KurindoActivity extends BaseActivity {
     private Class fragmentClass;
-
+    protected SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+        session = new SessionManager(this);
+
         showFragment(getFragmentClass(), getBundleParams(), getContainer());
     }
 

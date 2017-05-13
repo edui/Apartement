@@ -7,9 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.ButterKnife;
 import id.co.kurindo.apartment.R;
 import id.co.kurindo.apartment.helper.SQLiteHandler;
+import id.co.kurindo.apartment.helper.SessionManager;
 import id.co.kurindo.apartment.util.LogUtil;
 
 import static id.co.kurindo.apartment.util.LogUtil.makeLogTag;
@@ -22,11 +30,13 @@ public class BaseFragment extends Fragment {
 
     private static final String TAG = makeLogTag(BaseFragment.class);
     protected SQLiteHandler db;
+    protected SessionManager session;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new SQLiteHandler(getActivity());
+        session = new SessionManager(getActivity());
     }
 
     /**
@@ -80,4 +90,28 @@ public class BaseFragment extends Fragment {
         // show it
         alertDialog.show();
     }
+
+    public void addRequest(final String tag_string_req, int method, String url, Response.Listener responseListener, Response.ErrorListener errorListener, final Map<String, String> params, final Map<String, String> headers){
+        final StringRequest strReq = new StringRequest(method,url, responseListener, errorListener){
+            protected Map<String, String> getParams() throws AuthFailureError {
+                if(params == null) return super.getParams();
+                return params;
+            }
+            public Map<String, String> getHeaders() throws AuthFailureError{
+                if(headers == null) return super.getHeaders();
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+    public Map<String,String> getKurindoHeaders() {
+        Map<String, String> headers = null;
+        String api = db.getUserApi();
+        if(api != null && !api.isEmpty()){
+            headers = new HashMap<>();
+            headers.put("Api", api);
+        }
+        return headers;
+    }
+
 }

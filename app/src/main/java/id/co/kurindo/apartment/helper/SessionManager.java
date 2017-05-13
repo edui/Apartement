@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import id.co.kurindo.apartment.base.AppConfig;
+
 /**
  * Created by DwiM on 11/8/2016.
  */
@@ -28,6 +30,9 @@ public class SessionManager {
         private static final String KEY_IS_ACTIVATED= "isActivated";
         private static final String KEY_ROLE = "keyRole";
         private static final String KEY_CITY= "keyCity";
+        private static final String KEY_PHONE = "keyPhone";
+        private static final String KEY_TOKEN = "keyToken";
+        private static final String KEY_ROOM = "keyRoom";
 
         public SessionManager(Context context) {
             this._context = context;
@@ -52,11 +57,21 @@ public class SessionManager {
             editor.commit();
         }
 
-        public void setLoginData(String role, String city) {
+
+    public void setToken(String token) {
+        editor.putString(KEY_TOKEN, token);
+        editor.commit();
+    }
+    public void setRoom(String room) {
+        editor.putString(KEY_ROOM, room);
+        editor.commit();
+    }
+
+    public void setLoginData(String role, String mobile) {
 
             editor.putString(KEY_ROLE, role);
 
-            editor.putString(KEY_CITY, city);
+            editor.putString(KEY_PHONE, mobile);
 
             // commit changes
             editor.commit();
@@ -82,4 +97,24 @@ public class SessionManager {
         }
         public void clear() {
         }
+
+    public boolean isOwner() {
+        String role = pref.getString(KEY_ROLE, "client");
+        return (role.equals(AppConfig.KEY_OWNER) || role.equals(AppConfig.KEY_ADMIN) );
+    }
+    public boolean isTenant() {
+        String role = pref.getString(KEY_ROLE, "client");
+        return (role.equals(AppConfig.KEY_TENANT) );
+    }
+    public boolean isSupport() {
+        String role = pref.getString(KEY_ROLE, "client");
+        return (role.equals(AppConfig.KEY_ENGINEER) || role.equals(AppConfig.KEY_SECURITY));
+    }
+
+    public String getToken() {
+        return pref.getString(KEY_TOKEN, null);
+    }
+    public String getRoom() {
+        return pref.getString(KEY_ROOM, null);
+    }
 }

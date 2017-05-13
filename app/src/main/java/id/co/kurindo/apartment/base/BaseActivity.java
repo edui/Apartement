@@ -44,10 +44,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected ActionBar setupToolbar() {
-        ActionBar ab = getActionBarToolbar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-        return ab;
+        if(providesActivityToolbar()){
+            ActionBar ab = getActionBarToolbar();
+            ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+            ab.setDisplayHomeAsUpEnabled(true);
+            return ab;
+        }
+        return null;
     }
 
 

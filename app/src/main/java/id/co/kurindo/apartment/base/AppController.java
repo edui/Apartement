@@ -1,6 +1,9 @@
 package id.co.kurindo.apartment.base;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -8,10 +11,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import java.util.List;
+
+import id.co.kurindo.apartment.model.Room;
+
 /**
  * Created by DwiM on 11/8/2016.
  */
-public class AppController extends Application {
+public class AppController extends MultiDexApplication {
 
     public static final String TAG = AppController.class.getSimpleName();
 
@@ -19,13 +26,19 @@ public class AppController extends Application {
     //private LoadCityTask loadCityTask;
 
     private static AppController mInstance;
+    public Room room;
+    public String lang = "Bahasa";
+    public List<Room> rooms;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
     }
-
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(this);
+    }
     public static synchronized AppController getInstance() {
         return mInstance;
     }

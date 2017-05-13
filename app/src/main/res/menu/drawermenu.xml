@@ -3,22 +3,32 @@
 
 
 
+    <item android:title="Logged in as "
+        android:id="@+id/nav_item_loggedin_as"/>
     <item android:title="Home"
           android:id="@+id/nav_item_home"
           android:icon="@drawable/ic_home_black_18dp"/>
     <item android:title="Account"
         android:id="@+id/nav_item_account"
         android:icon="@drawable/ic_account_circle_black_18dp"/>
-    <item android:title="History (Engineer)"
-        android:id="@+id/nav_item_history"
-        android:icon="@drawable/ic_assignment_black"/>
-    <item android:title="History (Owner Tenant)"
-        android:id="@+id/nav_item_history2"
-        android:icon="@drawable/ic_assignment_black"/>
-    <item android:title="My Rooms"
-        android:id="@+id/nav_item_room"
-        android:icon="@drawable/ic_domain_black_18dp"/>
-
+    <group android:id="@+id/group_owner_id">
+        <item android:title="My Rooms"
+            android:id="@+id/nav_item_room"
+            android:icon="@drawable/ic_domain_black_18dp" />
+    </group>
+    <group android:id="@+id/group_tenant_id">
+        <item android:title="History"
+            android:id="@+id/nav_item_history2"
+            android:icon="@drawable/ic_assignment_black"/>
+    </group>
+    <group android:id="@+id/group_support_id">
+        <item android:title="History"
+            android:id="@+id/nav_item_history"
+            android:icon="@drawable/ic_assignment_black"/>
+    </group>
+    <item android:title="Contact Us"
+        android:id="@+id/nav_item_contact"
+        android:icon="@drawable/ic_person_outline_black_18dp"/>
     <group android:id="@+id/group_settings_id">
         <item android:title="Settings"
             android:id="@+id/nav_item_settings"

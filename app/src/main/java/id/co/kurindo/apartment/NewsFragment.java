@@ -37,7 +37,22 @@ public class NewsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflateAndBind(inflater, container, R.layout.fragment_news);
-        rAdapter = new HistoryAdapter(getActivity(), news);
+        rAdapter = new HistoryAdapter(getActivity(), news, new HistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onAssignButtonClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onIpButtonClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onCompletedButtonClick(View view, int position) {
+
+            }
+        });
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.setAdapter(rAdapter);
         return v;

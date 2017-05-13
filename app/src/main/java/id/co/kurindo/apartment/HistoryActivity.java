@@ -3,6 +3,7 @@ package id.co.kurindo.apartment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 
+import id.co.kurindo.apartment.base.AppConfig;
 import id.co.kurindo.apartment.base.KurindoActivity;
 
 /**
@@ -18,13 +19,13 @@ public class HistoryActivity extends KurindoActivity {
 
     @Override
     public Class getFragmentClass() {
-        Bundle b = getIntent().getExtras();
-        if(b != null){
-            String role = b.getString("role");
-            if(role.equalsIgnoreCase("owner")){
+        //Bundle b = getIntent().getExtras();
+        //if(b != null){
+            //String role = b.getString("role");
+            if(session.isTenant()){
                 return HistoryTabFragment.class;
             }
-        }
+        //}
         return HistoryJobTabFragment.class;
     }
 

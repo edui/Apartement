@@ -31,6 +31,7 @@ public class BillingFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflateAndBind(inflater, container, R.layout.fragment_billing);
+        ada.clear();
         ada.addAll(DummyData.billings);
         rAdapter = new BillingAdapter(getContext(), ada);
         rvList.setLayoutManager(new LinearLayoutManager(getContext()));

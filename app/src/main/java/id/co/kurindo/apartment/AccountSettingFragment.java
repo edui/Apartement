@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lamudi.phonefield.PhoneInputLayout;
@@ -49,6 +50,9 @@ public class AccountSettingFragment extends BaseFragment{
     @Bind(R.id.ivAddBusinessProfile)
     ImageView ivAddBusinessProfile;
 
+    @Bind(R.id.layoutAddTenant)
+    LinearLayout layoutAddTenant;
+
     @Bind(R.id.rvFamilyMembers)
     RecyclerView rvFamilyMembers;
     List<User> members = new ArrayList<>();
@@ -81,6 +85,10 @@ public class AccountSettingFragment extends BaseFragment{
         phoneNumber.setDefaultCountry("ID");
         phoneNumber.setPhoneNumber(user.getPhone());
         //if(user.getPhone().startsWith("+")) phoneNumber.setNumber((user.getPhone().startsWith("+")? "":"+")+user.getPhone());
+        layoutAddTenant.setVisibility(View.GONE);
+        if(session.isOwner()){
+            layoutAddTenant.setVisibility(View.VISIBLE);
+        }
         return v;
     }
 

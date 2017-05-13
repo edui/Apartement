@@ -7,4 +7,26 @@
     app:contentInsetStart="72dp"
     app:popupTheme="@style/ToolbarPopUp"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" />
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    <LinearLayout
+        android:id="@+id/layoutTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:visibility="gone">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp" android:src="@drawable/ic_domain_black_18dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content" android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView
+                android:id="@+id/titleOne"
+                android:layout_width="match_parent" android:textSize="16dp"
+                android:layout_height="wrap_content" android:text="Apartment"/>
+            <TextView
+                android:id="@+id/titleTwo"
+                android:layout_width="match_parent" android:textSize="12dp"
+                android:layout_height="wrap_content" android:text="Room"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    </android.support.v7.widget.Toolbar>

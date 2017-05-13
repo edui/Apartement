@@ -14,7 +14,7 @@
         android:paddingRight="24dp">
         <TextView
             android:layout_width="match_parent" android:gravity="center"
-            android:layout_height="wrap_content" android:text="Registrasi / Login user" android:textStyle="bold" android:textSize="16dp"/>
+            android:layout_height="wrap_content" android:text="Registrasi User" android:textStyle="bold" android:textSize="16dp"/>
         <TextView
             android:layout_width="match_parent" android:layout_margin="10dp" android:gravity="center"
             android:layout_height="wrap_content" android:text="Daftarkan nomor handphone anda." />
@@ -71,6 +71,10 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
+        <Spinner
+            android:id="@+id/spPilihBahasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
@@ -80,6 +84,13 @@
             android:padding="12dp"
             android:background="@color/colorPrimaryDark" android:textColor="@color/white"
             android:text="Buat Account"/>
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Already Registered. Login here." android:textStyle="bold" android:textSize="20sp"
+            android:layout_gravity="center" android:gravity="center"
+            android:layout_margin="10dp"/>
 
     </LinearLayout>
 </ScrollView>

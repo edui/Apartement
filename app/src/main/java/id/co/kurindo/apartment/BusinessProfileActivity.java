@@ -12,7 +12,7 @@ import id.co.kurindo.apartment.base.KurindoActivity;
 public class BusinessProfileActivity extends KurindoActivity {
     protected ActionBar setupToolbar() {
         ActionBar ab = super.setupToolbar();
-        if(ab != null) ab.setTitle("Add Business Profile");
+        if(ab != null) ab.setTitle("Add Tenant Profile");
         return ab;
     }
 

@@ -1,21 +1,18 @@
 package id.co.kurindo.apartment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import id.co.kurindo.apartment.base.BaseFragment;
-import id.co.kurindo.apartment.model.History;
-import id.co.kurindo.apartment.util.DummyData;
+import id.co.kurindo.apartment.base.AppConfig;
 
 /**
  * Created by dwim on 2/3/2017.
  */
 
 public class HistoryInProgressFragment extends HistoryFragment {
+    private static final String TAG = "HistoryInProgressFragment";
+
     @Override
-    public List<History> getData() {
-        List<History> data = DummyData.newhistories;
-        data.addAll(DummyData.iphistories);
-        return data;
+    protected String getRetrieveHistoryUrl() {
+        String url = AppConfig.URL_USER_DELATION_LIST;
+        url = url.replace("{category}", "all/"+AppConfig.STATUS_PROGRESS.toLowerCase());
+        return url;
     }
 }

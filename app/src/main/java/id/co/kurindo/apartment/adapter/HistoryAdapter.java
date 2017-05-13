@@ -18,9 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.co.kurindo.apartment.R;
+import id.co.kurindo.apartment.base.AppConfig;
 import id.co.kurindo.apartment.model.History;
-import id.co.kurindo.apartment.model.Product;
-import id.co.kurindo.apartment.model.Report;
 import id.co.kurindo.apartment.util.DummyData;
 
 
@@ -32,14 +31,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     Context context;
     List<History> data = new ArrayList<>();
     boolean showButton;
+    OnItemClickListener onItemClickListener;
 
-    public HistoryAdapter(Context context, List<History> data) {
-        this(context,data, false);
+    public HistoryAdapter(Context context, List<History> data, OnItemClickListener itemClickListener) {
+        this(context,data, false,itemClickListener);
     }
-    public HistoryAdapter(Context context, List<History> data, boolean showButton) {
+    public HistoryAdapter(Context context, List<History> data, boolean showButton, OnItemClickListener itemClickListener) {
         this.context = context;
         this.data = data;
         this.showButton=showButton;
+        this.onItemClickListener = itemClickListener;
     }
 
 
@@ -55,33 +56,46 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder vholder, final int position) {
         History model = data.get(position);
-        ((MyItemHolder)holder).buttonLayout.setVisibility(showButton?View.VISIBLE:View.GONE);
+         MyItemHolder holder = (MyItemHolder) vholder;
+        holder.buttonLayout.setVisibility(showButton?View.VISIBLE:View.GONE);
         /*
         Glide.with(context).load(model.getUrl())
                 .thumbnail(0.5f)
                 //.override(200,200)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(((MyItemHolder) holder).mImg);
+                .into(holder.mImg);
         */
-        ((MyItemHolder) holder).mTextView.setText(model.getReport());
-        ((MyItemHolder) holder).mTextViewTitle.setText(model.getDate());
-        if(model.getStatus().equalsIgnoreCase(DummyData.STATUS_NEW)){
-            ((MyItemHolder) holder).assign.setImageResource(R.drawable.ic_input_black_18dp);
-            ((MyItemHolder) holder).ip.setImageResource(R.drawable.ic_hourglass_empty_black_18dp);
-            ((MyItemHolder) holder).completed.setImageResource(R.drawable.ic_assignment_turned_in_white_18dp);
+        holder.mTextView.setText(model.getIssue().toStringSummary());
+        holder.mTextViewTitle.setText(model.getDate());
+        if(AppConfig.isNew(model.getStatus())){
+            holder.assign.setImageResource(R.drawable.ic_input_black_18dp);
+            holder.assign.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onAssignButtonClick(v, position);
+                }
+            });
+            holder.ip.setImageResource(R.drawable.ic_hourglass_empty_black_18dp);
+            holder.completed.setImageResource(R.drawable.ic_assignment_turned_in_white_18dp);
         }else
-        if(model.getStatus().equalsIgnoreCase(DummyData.STATUS_IP)){
-            ((MyItemHolder) holder).assign.setImageResource(R.drawable.ic_input_black_18dp);
-            ((MyItemHolder) holder).ip.setImageResource(R.drawable.ic_hourglass_full_black_18dp);
-            ((MyItemHolder) holder).completed.setImageResource(R.drawable.ic_assignment_turned_in_white_18dp);
+        if(AppConfig.isInProgress(model.getStatus())){
+            holder.assign.setImageResource(R.drawable.ic_input_black_18dp);
+            holder.ip.setImageResource(R.drawable.ic_hourglass_full_black_18dp);
+            holder.completed.setImageResource(R.drawable.ic_assignment_turned_in_white_18dp);
+            holder.completed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onCompletedButtonClick(v, position);
+                }
+            });
         }else
-        if(model.getStatus().equalsIgnoreCase(DummyData.STATUS_COMPLETED)){
-            ((MyItemHolder) holder).assign.setImageResource(R.drawable.ic_input_black_18dp);
-            ((MyItemHolder) holder).ip.setImageResource(R.drawable.ic_hourglass_full_black_18dp);
-            ((MyItemHolder) holder).completed.setImageResource(R.drawable.ic_assignment_turned_in_black_18dp);
+        if(AppConfig.isClosed(model.getStatus())){
+            holder.assign.setImageResource(R.drawable.ic_input_black_18dp);
+            holder.ip.setImageResource(R.drawable.ic_hourglass_full_black_18dp);
+            holder.completed.setImageResource(R.drawable.ic_assignment_turned_in_black_18dp);
         }
     }
 
@@ -114,4 +128,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
+    public interface OnItemClickListener {
+        void onAssignButtonClick(View view, int position);
+        void onIpButtonClick(View view, int position);
+        void onCompletedButtonClick(View view, int position);
+    }
 }

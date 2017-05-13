@@ -14,6 +14,14 @@ public class Address implements Parcelable {
     private String kab;
     private City city;
 
+    public Address(){}
+    public Address(int id, String alamat, String kec, String kab){
+        this.id = id;
+        this.alamat = alamat;
+        this.kec = kec;
+        this.kab = kab;
+    }
+
     protected Address(Parcel in) {
         id = in.readInt();
         alamat = in.readString();

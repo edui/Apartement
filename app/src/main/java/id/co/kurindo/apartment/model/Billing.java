@@ -14,7 +14,7 @@ import id.co.kurindo.apartment.util.DummyData;
 public class Billing implements Parcelable {
     private String month;
     private String year;
-    private List<Product> products;
+    private List<Issue> issues;
     private double totalCost;
     private String paymentDate;
     private String paidDate;
@@ -25,14 +25,14 @@ public class Billing implements Parcelable {
     public Billing(String year, String month, List producst, String paymentDate, String paidDate){
         this.year = year;
         this.month = month;
-        this.products = producst;
+        this.issues = producst;
         this.paymentDate = paymentDate;
         this.paidDate = paidDate;
     }
     protected Billing(Parcel in) {
         month = in.readString();
         year = in.readString();
-        products = in.createTypedArrayList(Product.CREATOR);
+        issues = in.createTypedArrayList(Issue.CREATOR);
         totalCost = in.readDouble();
         paymentDate = in.readString();
         paidDate = in.readString();
@@ -61,7 +61,7 @@ public class Billing implements Parcelable {
         dest.writeString(month);
         dest.writeDouble(totalCost);
         dest.writeString(paymentDate);
-        dest.writeTypedList(products);
+        dest.writeTypedList(issues);
         dest.writeString(paidDate);
     }
 
@@ -69,12 +69,12 @@ public class Billing implements Parcelable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         //sb.append(month+" "+year+"\n");
-        if(products != null){
+        if(issues != null){
             double totalCost = 0;
-            for (int i = 0; i < products.size(); i++) {
-                Product p = products.get(i);
+            for (int i = 0; i < issues.size(); i++) {
+                Issue p = issues.get(i);
                 totalCost += p.getCost();
-                sb.append(p.toStringSummary()+"\n");
+                sb.append(p.toStringSummary()+"\n\n");
             }
             sb.append("\nTotal Cost : "+ DummyData.formatCurrency(totalCost));
             sb.append("\nPayment Date : "+paymentDate);
@@ -99,12 +99,12 @@ public class Billing implements Parcelable {
         this.year = year;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Issue> getIssues() {
+        return issues;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
     public double getTotalCost() {

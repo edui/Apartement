@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.co.kurindo.apartment.R;
-import id.co.kurindo.apartment.model.Product;
+import id.co.kurindo.apartment.model.Issue;
 
 
 /**
@@ -27,9 +27,9 @@ import id.co.kurindo.apartment.model.Product;
 public class ButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    List<Product> data = new ArrayList<>();
+    List<Issue> data = new ArrayList<>();
 
-    public ButtonAdapter(Context context, List<Product> data) {
+    public ButtonAdapter(Context context, List<Issue> data) {
         this.context = context;
         this.data = data;
     }
@@ -48,7 +48,7 @@ public class ButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Product model = data.get(position);
+        Issue model = data.get(position);
         /*
         Glide.with(context).load(model.getUrl())
                 .thumbnail(0.5f)

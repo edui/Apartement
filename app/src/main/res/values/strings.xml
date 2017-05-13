@@ -2,5 +2,11 @@
     <string name="app_name">Apartment</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
-
+    <string name="phoneNumber">Nomor Telepon/WA</string>
+    <string name="complaint_category">Complaint Categories</string>
+    <string-array name="pilihan_bahasa_array">
+        <item>-Pilih-</item>
+        <item>Bahasa</item>
+        <item>English</item>
+    </string-array>
 </resources>

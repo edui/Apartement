@@ -6,7 +6,10 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -15,6 +18,7 @@ import com.lamudi.phonefield.PhoneInputLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import id.co.kurindo.apartment.base.AppController;
 import id.co.kurindo.apartment.helper.SQLiteHandler;
 import id.co.kurindo.apartment.helper.SessionManager;
 import id.co.kurindo.apartment.util.DummyData;
@@ -39,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Bind(R.id.layoutVerifikasi)
     LinearLayout layoutVerifikasi;
+    @Bind(R.id.spPilihBahasa)
+    Spinner spPilihBahasa;
 
     boolean activation = false;
     SessionManager session;
@@ -54,11 +60,27 @@ public class RegisterActivity extends AppCompatActivity {
         session = new SessionManager(this);
         db = new SQLiteHandler(this);
         phoneNumber.setDefaultCountry("ID");
+        phoneNumber.setHint(R.string.phoneNumber);
         if(session.isLoggedIn()) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),R.array.pilihan_bahasa_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPilihBahasa.setAdapter(adapter);
+        spPilihBahasa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String [] langs = getResources().getStringArray(R.array.pilihan_bahasa_array);
+                AppController.getInstance().lang = langs[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @OnClick(R.id.btn_signup)
@@ -102,4 +124,11 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-}
+    @OnClick(R.id.tvLogin)
+    public void OnLogin(){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    }

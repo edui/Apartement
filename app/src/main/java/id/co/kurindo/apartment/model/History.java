@@ -3,6 +3,9 @@ package id.co.kurindo.apartment.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
+import id.co.kurindo.apartment.base.AppConfig;
 import id.co.kurindo.apartment.util.DummyData;
 
 /**
@@ -11,21 +14,21 @@ import id.co.kurindo.apartment.util.DummyData;
 
 public class History implements Parcelable {
     private String date;
-    private String report;
     private String pic;
     private String status;
+    private Issue issue;
 
-    public History(String date, String report){
-        this(date, report , DummyData.STATUS_NEW);
+    public History(String date, Issue report){
+        this(date, report , report.getStatus());
     }
-    public History(String date, String report, String status){
+    public History(String date, Issue report, String status){
         this.date = date;
-        this.report = report;
+        this.issue = report;
         this.status = status;
     }
     protected History(Parcel in) {
         date = in.readString();
-        report = in.readString();
+        issue = in.readParcelable(Issue.class.getClassLoader());
         pic = in.readString();
         status = in.readString();
     }
@@ -50,7 +53,7 @@ public class History implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(date);
-        dest.writeString(report);
+        dest.writeParcelable(issue, flags);
         dest.writeString(pic);
         dest.writeString(status);
     }
@@ -63,12 +66,12 @@ public class History implements Parcelable {
         this.date = date;
     }
 
-    public String getReport() {
-        return report;
+    public Issue getIssue() {
+        return issue;
     }
 
-    public void setReport(String report) {
-        this.report = report;
+    public void setIssue(Issue issue) {
+        this.issue = issue;
     }
 
     public String getPic() {
