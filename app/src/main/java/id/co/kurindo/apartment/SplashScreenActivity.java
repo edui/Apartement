@@ -33,9 +33,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                         String roomStr = session.getRoom();
                         String room = roomStr;
                         String apartment ="";
-                        if(roomStr.contains("|")){
+                        if(roomStr != null && roomStr.contains("|")){
                             room = roomStr.substring(0, roomStr.indexOf("|"));
                             apartment = roomStr.substring(roomStr.indexOf("|")+1);
+                        }else{
+                            room = "Select Room";
                         }
                         Room roomObj = new Room(room, new User());
                         roomObj.setApartment(new Apartment(1, apartment, new Address()));

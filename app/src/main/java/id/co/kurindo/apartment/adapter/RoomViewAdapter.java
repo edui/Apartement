@@ -66,7 +66,7 @@ public class RoomViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.mTextViewTitle.setText(model.getRoomNumber());
         String roomStr = session.getRoom();
         String room = roomStr;
-        if(roomStr.contains("|")){
+        if(roomStr != null && roomStr.contains("|")){
             room = roomStr.substring(0, roomStr.indexOf("|"));
         }
         if(model.getRoomNumber().equalsIgnoreCase(room)){
